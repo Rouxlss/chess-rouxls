@@ -387,3 +387,8 @@ socket.on('match', (room_info)=> {
 })
 
 
+socket.on('second-player', ({second_player})=> {
+    if(second_player==true){
+        chessboard.classList.add('second-player');
+    }
+})

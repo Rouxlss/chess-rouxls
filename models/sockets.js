@@ -64,6 +64,9 @@ class Sockets {
                                 room_info.player2_name = player
 
                                 this.io.emit('match', room_info.room);
+                                socket.emit('second-player', {
+                                    second_player: true
+                                })
 
                             }
 

@@ -136,6 +136,11 @@ body {
     bottom: 0;
 }
 
+.second-player {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 #chessboard .cb-row {
     position: relative;
     width: 100%;
