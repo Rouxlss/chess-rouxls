@@ -216,3 +216,15 @@ body {
     object-fit: contain;
 }
 
+.game-room {
+    background: rgba(0, 0, 0, 0.877);
+    width: 100vw;
+    z-index: 10000000;
+    position: absolute;
+    height: 100vh;
+    padding: 100px;
+}
+
+.game-room h2 {
+    color: white;
+}

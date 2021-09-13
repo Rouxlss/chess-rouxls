@@ -87,7 +87,7 @@ for (let i = 1; i <= game_cells.length; i++) {
   }
 }
 
-console.log({ game });
+// console.log({ game });
 
 const sound = () => {
   let audio = new Audio("./assets/audio/take-piece.mp3");
@@ -311,9 +311,7 @@ cell_engine();
 // socket.emit('mensaje-to-server', { data });
 
 // Para escuchar
-socket.on("welcome", (data) => {
-  console.log(data);
-});
+
 
 socket.on("change-turn", (player_turn) => {
     console.log('turno: ' + player_turn);
@@ -333,4 +331,59 @@ socket.on('update-time', (data)=>{
   white_clock.innerHTML = data.white;
   black_clock.innerHTML = data.black;
 })
+
+let RoomId = document.querySelector('#RoomId');
+let gameURL = window.location.href.split('/')
+let room = gameURL[3];
+
+let username = room.split('=');
+username = username[1];
+
+console.log(username);
+
+room = room.split('?')
+room = room[0];
+
+RoomId.value = room;
+
+socket.on("welcome", ({roomCount}) => {
+
+    console.log('Rooms Created: ' + roomCount);
+
+    socket.emit('room', {
+        room,
+        player: username,
+        roomid: roomCount
+    });
+
+});
+
+
+socket.on('connectToRoom', (data)=> {
+  console.log(data);
+})
+
+socket.on('full', ({msg, full}) => {
+    let main = document.querySelector('main');
+    if(full){
+        main.innerHTML = `<div class='container row mt-5 d-flex justify-content-center'></div>
+        <h2 class='text-center text-white'>SALA LLENA :(</h2>
+        <br>
+        
+        <div class='col text-center'>
+          <a class='btn btn-danger text-center' href='/room'>REGRESAR</a>
+        </div>
+      </div>`
+    }
+})
+
+socket.on('match', (room_info)=> {
+
+    let game_room = document.querySelector('.game-room');
+    
+    if(room_info==room){
+        game_room.classList.add('d-none');
+    }
+})
+
 

@@ -25,6 +25,14 @@ class Server {
         // Desplegar el directorio público
         this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
 
+        this.app.get('/room', function (req, res) {
+            res.sendFile(path.join(__dirname, '/../public/room.html'));
+        });
+
+        this.app.get('/:id', function (req, res) {
+            res.sendFile(path.join(__dirname, '/../public/index.html'));
+        });
+        
         // CORS
         this.app.use( cors() );
 
