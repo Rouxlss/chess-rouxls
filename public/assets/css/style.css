@@ -97,7 +97,7 @@ body {
     margin-left: 2px;
 }
 
-.time {
+.time, .names {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -106,22 +106,85 @@ body {
 
 .time .time-white-player {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
     background: #989695;
     padding: 5px;
     font-size: 25px;
     color: rgb(34, 34, 34);
 }
 
+
 .time .time-black-player {
     position: absolute;
-    top: 20px;
-    left: 20px;
     background: #2C2823;
+    color: #989695;
     padding: 5px;
     font-size: 25px;
+}
+
+.names .name-white-player {
+    position: absolute;
+    right: 0px;
+    left: 0;
+    margin: auto;
+    background: #989695;
+    padding: 5px;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    color: rgb(34, 34, 34);
+}
+
+.names .name-black-player {
+    position: absolute;
+    right: 0px;
+    left: 0;
+    margin: auto;
+    background: #2C2823;
     color: #989695;
+    padding: 5px;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+}
+
+/* TIME */
+
+.second-player-black-time {
+    bottom: 20px;
+    right: 20px;
+}
+
+.second-player-white-time {
+    top: 20px;
+    left: 20px;
+}
+
+.first-player-black-time {
+    top: 20px;
+    left: 20px;
+}
+
+.first-player-white-time {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* names */
+
+.second-player-black-name {
+    bottom: 0px;
+}
+
+.second-player-white-name {
+    top: 0px;
+}
+
+.first-player-black-name {
+    top: 0px;
+}
+
+.first-player-white-name {
+    bottom: 0px;
 }
 
 #chessboard {

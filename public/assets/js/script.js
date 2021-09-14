@@ -22,23 +22,23 @@ for (let i = 7; i >= 0; i--) {
   chess_board += `<div class="cb-row">`;
 
   if (i % 2 == 0) {
-    for (let j = 0; j < 8; j++) {
-      let id = chess_letter[j] + chess_number[i];
+	for (let j = 0; j < 8; j++) {
+	  let id = chess_letter[j] + chess_number[i];
 
-      chess_board += `
-            <div class="cb-cell first-color" id="${id}">
-                <div class="letter">${id}</div>
-            </div>`;
-    }
+	  chess_board += `
+			<div class="cb-cell first-color" id="${id}">
+				<div class="letter">${id}</div>
+			</div>`;
+	}
   } else {
-    for (let j = 0; j < 8; j++) {
-      let id = chess_letter[j] + chess_number[i];
+	for (let j = 0; j < 8; j++) {
+	  let id = chess_letter[j] + chess_number[i];
 
-      chess_board += `
-            <div class="cb-cell second-color" id="${id}">
-                <div class="letter">${id}</div>
-            </div>`;
-    }
+	  chess_board += `
+			<div class="cb-cell second-color" id="${id}">
+				<div class="letter">${id}</div>
+			</div>`;
+	}
   }
 
   chess_board += `</div>`;
@@ -50,10 +50,10 @@ chessboard.innerHTML += chess_board;
 
 const create_piece = (i, j, type, chess_pieces_name) => {
   let piece = `
-    <div class="piece ${type}" id="${type}-${chess_pieces_id[i][j]}">
-        <img class="piece_img" src="./assets/img/pieces/${type}-${chess_pieces_name[i][j]}.png">
-    </div>
-    `;
+	<div class="piece ${type}" id="${type}-${chess_pieces_id[i][j]}">
+		<img class="piece_img" src="./assets/img/pieces/${type}-${chess_pieces_name[i][j]}.png">
+	</div>
+	`;
 
   return piece;
 };
@@ -62,15 +62,15 @@ let rows = document.querySelectorAll(".cb-row");
 
 for (let i = 0; i < 2; i++) {
   for (let j = 0; j < 8; j++) {
-    let piece = create_piece(i, j, "black", chess_pieces_name);
-    rows[i].querySelectorAll(".cb-cell")[j].innerHTML += piece;
+	let piece = create_piece(i, j, "black", chess_pieces_name);
+	rows[i].querySelectorAll(".cb-cell")[j].innerHTML += piece;
   }
 }
 
 for (let i = 1; i >= 0; i--) {
   for (let j = 0; j < 8; j++) {
-    let piece = create_piece(i, j, "white", chess_pieces_name);
-    rows[7 - i].querySelectorAll(".cb-cell")[j].innerHTML += piece;
+	let piece = create_piece(i, j, "white", chess_pieces_name);
+	rows[7 - i].querySelectorAll(".cb-cell")[j].innerHTML += piece;
   }
 }
 
@@ -84,16 +84,16 @@ let row = [];
 for (let i = 1; i <= game_cells.length; i++) {
   row.push(game_cells[i - 1]);
   if (i % 8 == 0) {
-    game.push(row);
-    row = [];
+	game.push(row);
+	row = [];
   }
 }
 
 // console.log({ game });
 
 const sound = () => {
-  let audio = new Audio("./assets/audio/take-piece.mp3");
-  audio.play();
+//   let audio = new Audio("./assets/audio/take-piece.mp3");
+//   audio.play();
 };
 
 let pieces;
@@ -119,212 +119,246 @@ let alert_msg = document.querySelector(".alert");
 const alert_animation = () => {
   alert_msg.style.opacity = 1;
   setTimeout(() => {
-    alert_msg.style.opacity = 0;
+	alert_msg.style.opacity = 0;
   }, 1500);
 };
 
 // TIME
 
-  let white_time = [5,0];
-  let black_time = [5,0];
+  let white_time;
+  let black_time;
 
   let white_clock = document.querySelector('.time-white-player')
   let black_clock = document.querySelector('.time-black-player')
 
   let clock_interval;
 
-  const clock = ( time, clock ) => {
-
-    clock_interval = setInterval(() => {
-      
-      time[1]--;
-      if(time[1]<0){
-        time[1]=59;
-        time[0]--
-      }
-
-      clock.innerHTML = `${time[0]}:${('00' + time[1]).slice(-2)}` 
-      console.log(white_time);
-
-      socket.emit('update-time', {
-        white: white_clock.innerHTML,
-        black: black_clock.innerHTML,
-		room
-      })
-
-    }, 1000);
-
-  }
-
-  const stop_clock = () => {
-    clearInterval(clock_interval);
-  }
 
 
 // TIME
 
 const pieces_engine = () => {
   pieces.forEach((piece) => {
-    piece.addEventListener("click", () => {
+	piece.addEventListener("click", () => {
 
-      pieces.forEach((piece) => {
-        piece.classList.remove("selected");
-      });
+	
+		
+	selected_piece = "";
 
-      game.forEach((row) => {
-        for (let i = 0; i < row.length; i++) {
-          row[i].lastElementChild.id == piece.id
-            ? console.log("Pieza seleccionada: ", piece)
-            : null;
-        }
-      });
+	  pieces.forEach((piece) => {
+		piece.classList.remove("selected");
+	  });
 
-      const config_move = () => {
-        if (piece.parentElement.children.length == 2) {
-          piece.classList.add("selected");
-          sound();
-          setTimeout(() => {
-            selected_piece = piece;
-            selected_piece_type = piece.classList[1];
-            // console.log(`pieza ${piece.id} seleccionada `);
-          }, 100);
-        }
-      };
+	  game.forEach((row) => {
+		for (let i = 0; i < row.length; i++) {
+		  row[i].lastElementChild.id == piece.id
+			? console.log("Pieza seleccionada: ", piece)
+			: null;
+		}
+	  });
 
-      if (turn == 1 && piece.classList[1] == "white") {
-        config_move();
+	  const config_move = () => {
+		if (piece.parentElement.children.length == 2) {
+		  piece.classList.add("selected");
+		  sound();
+		  setTimeout(() => {
+			selected_piece = piece;
+			selected_piece_type = piece.classList[1];
+			// console.log(`pieza ${piece.id} seleccionada `);
+		  }, 100);
+		}
+	  };
 
-        stop_clock();
-        clock(white_time, white_clock);
+	  if (turn == 1 && piece.classList[1] == "white" && player_type==0) {
 
-        socket.emit("change-turn", {
-            player_turn: 2,
+		config_move();
+		socket.emit('time-discount', {
+			player: 0,
+			actual_room_id,
 			room
-        });
+		})
 
-      } else if (turn == 2 && piece.classList[1] == "black") {
+	  } else if (turn == 2 && piece.classList[1] == "black" && player_type==1) {
 
-        config_move();
-
-        stop_clock();
-        clock(black_time, black_clock);
-
-        socket.emit("change-turn", {
-            player_turn: 1,
+		config_move();
+		socket.emit('time-discount', {
+			player: 1,
+			actual_room_id,
 			room
-        });
+		})
 
-      } else if (turn == 2 && piece.classList[1] == "white") {
-        alert_msg.querySelector("p").innerHTML =
-          "No puedes mover, es el turno de las negras";
-        alert_animation();
-      } else if (turn == 1 && piece.classList[1] == "black") {
-        alert_msg.querySelector("p").innerHTML =
-          "No puedes mover, es el turno de las blancas";
-        alert_animation();
-      }
+	  } else if (turn == 2 && piece.classList[1] == "white" && player_type==0) {
+		alert_msg.querySelector("p").innerHTML =
+		  "No puedes mover, es el turno de las negras";
+		alert_animation();
+	  } else if (turn == 1 && piece.classList[1] == "black" && player_type==1) {
+		alert_msg.querySelector("p").innerHTML =
+		  "No puedes mover, es el turno de las blancas";
+			alert_animation();
+	  }
 
-      // console.log("id: " + piece.id);
-      // console.log("piece: " + piece.parentElement.id);
-    });
+	  // console.log("id: " + piece.id);
+	  // console.log("piece: " + piece.parentElement.id);
+	});
   });
 };
 
 const cell_engine = () => {
   cells.forEach((cell) => {
-    cell.addEventListener("click", () => {
-      // console.log("id cell: " + cell.id);
-      // console.log("Lenght: " + cell.children.length);
+	cell.addEventListener("click", () => {
+	  // console.log("id cell: " + cell.id);
+	  // console.log("Lenght: " + cell.children.length);
 
-      const move_piece = (index) => {
+	  const move_piece = (index) => {
 
-        let piece_img = selected_piece.querySelector("img").src;
-        let cell_id = cell.id;
+		let piece_img = selected_piece.querySelector("img").src;
+		let cell_id = cell.id;
 
-        let move = `<li><img src="${piece_img}" alt=""> <span>${cell_id}</span></li>`;
-        sides[index].innerHTML += move;
+		let move = `<li><img src="${piece_img}" alt=""> <span>${cell_id}</span></li>`;
+		sides[index].innerHTML += move;
 
-        cell.append(selected_piece);
-        selected_piece = "";
-        sound();
+		cell.append(selected_piece);
+		selected_piece = "";
+		sound();
 
-        pieces.forEach((piece) => {
-          piece.classList.remove("selected");
-        });
+		pieces.forEach((piece) => {
+		  piece.classList.remove("selected");
+		});
 
-        setTimeout(() => {
-          selected_piece = "";
-          selected_piece_type = "";
-        }, 100);
+		setTimeout(() => {
+		  selected_piece = "";
+		  selected_piece_type = "";
+		}, 100);
 
-        socket.emit("move-piece", {
-          data: chessboard.innerHTML,
-          room
-        });
+		socket.emit("move-piece", {
+		  data: chessboard.innerHTML,
+		  room
+		});
 
-      };
+	  };
 
-      if (selected_piece != "" && cell.children.length == 1) {
-        // console.log("Lenght: " + cell.childNodes.length);
+	  if (selected_piece != "" && cell.children.length == 1) {
 
-        if (selected_piece_type == "white") {
-          move_piece(0);
-          stop_clock();
-          clock(black_time, black_clock);
-        } else if (selected_piece_type == "black") {
-          move_piece(1);
-          stop_clock();
-          clock(white_time, white_clock);
+		if (selected_piece_type == "white") {
 
-        }
-      } else if (selected_piece != "" && cell.children.length == 2) {
-        if (
-          cell.querySelector(".piece").classList.contains("black") &&
-          selected_piece_type == "white"
-        ) {
-          let parent_black_piece = cell.querySelector(".black").parentElement;
-          let black_piece = parent_black_piece.querySelector(".black");
-          black_piece.remove();
-          move_piece(0);
+		  move_piece(0);
 
-          socket.emit("change-turn", {
-            player_turn: 2,
+		  socket.emit("change-turn", {
+			player_turn: 2,
 			room
-          });
+		  });
 
-        } else if (
-          cell.querySelector(".piece").classList.contains("white") &&
-          selected_piece_type == "black"
-        ) {
-          let parent_white_piece = cell.querySelector(".white").parentElement;
-          let white_piece = parent_white_piece.querySelector(".white");
-          white_piece.remove();
-          move_piece(1);
+		  	socket.emit('time-stop', {
+				player: 0,
+				actual_room_id,
+				room
+			})
 
-          socket.emit("change-turn", {
-            player_turn: 1,
+			socket.emit('time-discount', {
+				player: 1,
+				actual_room_id,
+				room
+			})
+
+		  
+		} else if (selected_piece_type == "black") {
+
+	
+		  move_piece(1);
+
+			socket.emit("change-turn", {
+				player_turn: 1,
+				room
+			});
+
+			socket.emit('time-stop', {
+				player: 1,
+				actual_room_id,
+				room
+			})
+
+			socket.emit('time-discount', {
+				player: 0,
+				actual_room_id,
+				room
+			})
+
+
+		}
+	  } else if (selected_piece != "" && cell.children.length == 2) {
+		if (
+		  cell.querySelector(".piece").classList.contains("black") &&
+		  selected_piece_type == "white"
+		) {
+		  let parent_black_piece = cell.querySelector(".black").parentElement;
+		  let black_piece = parent_black_piece.querySelector(".black");
+		  black_piece.remove();
+
+		  
+		  move_piece(0);
+		  
+
+		  socket.emit("change-turn", {
+			player_turn: 2,
 			room
-          });
-        }
-      }
+		  });
 
-      // console.log("child count: " + cell.childElementCount);
-    });
+		  socket.emit('time-stop', {
+			player: 0,
+			actual_room_id,
+			room
+		})
+
+		socket.emit('time-discount', {
+			player: 1,
+			actual_room_id,
+			room
+		})
+
+
+		} else if (
+		  cell.querySelector(".piece").classList.contains("white") &&
+		  selected_piece_type == "black"
+		) {
+		  let parent_white_piece = cell.querySelector(".white").parentElement;
+		  let white_piece = parent_white_piece.querySelector(".white");
+		  white_piece.remove();
+
+		  
+		  move_piece(1);
+
+		  socket.emit("change-turn", {
+			player_turn: 1,
+			room
+		  });
+
+		  socket.emit('time-stop', {
+			player: 1,
+			actual_room_id,
+			room
+		})
+
+		socket.emit('time-discount', {
+			player: 0,
+			actual_room_id,
+			room
+		})
+
+
+		  
+		}
+	  }
+
+	});
   });
 };
 
-pieces_engine();
-cell_engine();
-
-/// Para emitir
-// socket.emit('mensaje-to-server', { data });
-
-// Para escuchar
 
 
 socket.on("change-turn", ({player_turn, localroom}) => {
+
 	if(localroom==room){
-		console.log('turno: ' + player_turn);
+		// console.log('turno: ' + player_turn);
 		turn = player_turn;
 	}
 });
@@ -332,7 +366,7 @@ socket.on("change-turn", ({player_turn, localroom}) => {
 socket.on("move-piece", ({data, localroom}) => {
 
   if(localroom==room){
-    chessboard.innerHTML = data;
+	chessboard.innerHTML = data;
 		init_variables();
 		pieces_engine();
 		cell_engine();
@@ -341,12 +375,23 @@ socket.on("move-piece", ({data, localroom}) => {
 
 });
 
-socket.on('update-time', (data)=>{
+socket.on('update-white-time', (data)=>{
 	if(data.room==room){
 		white_clock.innerHTML = data.white;
+	}
+	// console.log(data);
+})
+
+socket.on('update-black-time', (data)=>{
+	if(data.room==room){
 		black_clock.innerHTML = data.black;
 	}
+	// console.log(data);
 })
+
+let name_white_player = document.querySelector('.name-white-player');
+let name_black_player = document.querySelector('.name-black-player');
+
 
 let RoomId = document.querySelector('#RoomId');
 let gameURL = window.location.href.split('/')
@@ -364,54 +409,81 @@ RoomId.value = room;
 
 socket.on("welcome", ({roomCount}) => {
 
-    console.log('Rooms Created: ' + roomCount);
+	// console.log('Rooms Created: ' + roomCount);
 
-    socket.emit('room', {
-        room,
-        player: username,
-        roomid: roomCount
-    });
+	socket.emit('room', {
+		room,
+		player: username,
+		roomid: roomCount
+	});
+
 
 });
 
 socket.on('connectToRoom', (data)=> {
-  console.log(data);
+//   console.log(data);
 })
 
 socket.on('full', ({msg, full}) => {
-    let main = document.querySelector('main');
-    if(full){
-        main.innerHTML = `<div class='container row mt-5 d-flex justify-content-center'></div>
-        <h2 class='text-center text-white'>SALA LLENA :(</h2>
-        <br>
-        
-        <div class='col text-center'>
-          <a class='btn btn-danger text-center' href='/room'>REGRESAR</a>
-        </div>
-      </div>`
-    }
+	let main = document.querySelector('main');
+	if(full){
+		main.innerHTML = `<div class='container row mt-5 d-flex justify-content-center'></div>
+		<h2 class='text-center text-white'>SALA LLENA :(</h2>
+		<br>
+
+		<div class='col text-center'>
+		  <a class='btn btn-danger text-center' href='/room'>REGRESAR</a>
+		</div>
+	  </div>`
+	}
 })
 
 socket.on('match', (room_info)=> {
 
-    let game_room = document.querySelector('.game-room');
-    
-    if(room_info==room){
-        game_room.classList.add('d-none');
-    }
+	let game_room = document.querySelector('.game-room');
+
+	if(room_info.room==room){
+		game_room.classList.add('d-none');
+		name_white_player.innerHTML = room_info.host_name
+		name_black_player.innerHTML = room_info.player2_name
+
+
+		actual_room_id = room_info.roomid
+
+		pieces_engine();
+		cell_engine();
+
+	}
+
 })
 
 
 socket.on('second-player', ({second_player})=> {
-    if(second_player==true){
-        chessboard.classList.add('second-player');
+	if(second_player==true){
+
+		chessboard.classList.add('second-player');
+
+		name_white_player.classList.add('second-player-white-name')
+		name_black_player.classList.add('second-player-black-name')
+
+		white_clock.classList.add('second-player-white-time')
+		black_clock.classList.add('second-player-black-time')
+
 		player_type = 1;
-    }
+	}
 })
 
 socket.on('first-player', ({first_player})=> {
-    if(first_player==true){
-        chessboard.classList.add('first-player');
+	if(first_player==true){
+		chessboard.classList.add('first-player');
+
+		name_white_player.classList.add('first-player-white-name')
+		name_black_player.classList.add('first-player-black-name')
+
+		white_clock.classList.add('first-player-white-time')
+		black_clock.classList.add('first-player-black-time')
+
 		player_type=0;
-    }
+	}
 })
+
