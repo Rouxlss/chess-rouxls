@@ -1,6 +1,8 @@
 let chessboard = document.querySelector("#chessboard");
 let chess_board = "";
 
+let player_type = null;
+
 let chess_letter = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let chess_number = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -147,6 +149,7 @@ const alert_animation = () => {
       socket.emit('update-time', {
         white: white_clock.innerHTML,
         black: black_clock.innerHTML,
+		room
       })
 
     }, 1000);
@@ -196,6 +199,7 @@ const pieces_engine = () => {
 
         socket.emit("change-turn", {
             player_turn: 2,
+			room
         });
 
       } else if (turn == 2 && piece.classList[1] == "black") {
@@ -207,6 +211,7 @@ const pieces_engine = () => {
 
         socket.emit("change-turn", {
             player_turn: 1,
+			room
         });
 
       } else if (turn == 2 && piece.classList[1] == "white") {
@@ -254,7 +259,9 @@ const cell_engine = () => {
 
         socket.emit("move-piece", {
           data: chessboard.innerHTML,
+          room
         });
+
       };
 
       if (selected_piece != "" && cell.children.length == 1) {
@@ -282,6 +289,7 @@ const cell_engine = () => {
 
           socket.emit("change-turn", {
             player_turn: 2,
+			room
           });
 
         } else if (
@@ -295,6 +303,7 @@ const cell_engine = () => {
 
           socket.emit("change-turn", {
             player_turn: 1,
+			room
           });
         }
       }
@@ -313,23 +322,30 @@ cell_engine();
 // Para escuchar
 
 
-socket.on("change-turn", (player_turn) => {
-    console.log('turno: ' + player_turn);
-    turn = player_turn;
+socket.on("change-turn", ({player_turn, localroom}) => {
+	if(localroom==room){
+		console.log('turno: ' + player_turn);
+		turn = player_turn;
+	}
 });
 
-socket.on("move-piece", (data) => {
-  chessboard.innerHTML = data;
-  init_variables();
-  pieces_engine();
-  cell_engine();
-  sound();
-});
+socket.on("move-piece", ({data, localroom}) => {
 
+  if(localroom==room){
+    chessboard.innerHTML = data;
+		init_variables();
+		pieces_engine();
+		cell_engine();
+		sound();
+  }
+
+});
 
 socket.on('update-time', (data)=>{
-  white_clock.innerHTML = data.white;
-  black_clock.innerHTML = data.black;
+	if(data.room==room){
+		white_clock.innerHTML = data.white;
+		black_clock.innerHTML = data.black;
+	}
 })
 
 let RoomId = document.querySelector('#RoomId');
@@ -357,7 +373,6 @@ socket.on("welcome", ({roomCount}) => {
     });
 
 });
-
 
 socket.on('connectToRoom', (data)=> {
   console.log(data);
@@ -390,5 +405,13 @@ socket.on('match', (room_info)=> {
 socket.on('second-player', ({second_player})=> {
     if(second_player==true){
         chessboard.classList.add('second-player');
+		player_type = 1;
+    }
+})
+
+socket.on('first-player', ({first_player})=> {
+    if(first_player==true){
+        chessboard.classList.add('first-player');
+		player_type=0;
     }
 })

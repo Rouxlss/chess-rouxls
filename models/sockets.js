@@ -47,6 +47,10 @@ class Sockets {
                         player2_name: ''
                     });
 
+                    socket.emit('first-player', {
+                        first_player: true
+                    })
+
                     this.roomCount = this.roomInfo.length;
 
                 }else {
@@ -92,7 +96,6 @@ class Sockets {
                             room
                         });
     
-    
                         this.roomInfo.push({
                             room,
                             host_id: socket.id,
@@ -101,6 +104,10 @@ class Sockets {
                             player2_id: '',
                             player2_name: ''
                         });
+
+                        socket.emit('first-player', {
+                            first_player: true
+                        })
 
                         this.roomCount = this.roomInfo.length;
 
@@ -115,14 +122,20 @@ class Sockets {
 
         
             // Escuchar evento: mensaje-to-server
-            socket.on('move-piece', ( {data} ) => {
-                // console.log( data );
-                this.io.emit('move-piece', data );
+            socket.on('move-piece', ( {data, room} ) => {
+                console.log( data, room );
+                this.io.emit('move-piece', {
+                    data,
+                    localroom: room
+                });
             });
 
-            socket.on('change-turn', ( {player_turn} ) => {
+            socket.on('change-turn', ( {player_turn, room} ) => {
                 console.log( 'turno: ' + player_turn );
-                this.io.emit('change-turn', player_turn );
+                this.io.emit('change-turn', {
+                    player_turn, 
+                    localroom: room 
+                });
             });
 
             socket.on('update-time', (data)=>{
