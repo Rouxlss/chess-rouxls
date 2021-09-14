@@ -72,8 +72,8 @@ class Sockets {
                                 
                                 room_info.player2_id = socket.id;
                                 room_info.player2_name = player
-                                room_info.white_time =  [5,0]
-                                room_info.black_time =  [5,0]
+                                room_info.white_time =  [0,10]
+                                room_info.black_time =  [0,10]
 
                                 this.clock_interval.push(['', '']);
 
@@ -192,24 +192,44 @@ class Sockets {
 
                     let time = this.roomInfo[actual_room_id].white_time;
 
-                    this.clock_interval[actual_room_id][0] = setInterval(() => {
 
-                        time[1]--;
-                        if(time[1]<0){
-                          time[1]=59;
-                          time[0]--
-                        }
-                  
-                        let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
-                  
-                        this.io.emit('update-white-time', {
-                              white: clock,
-                              room
-                          })
 
-                          this.roomInfo[actual_room_id].white_time=time;
-                  
-                      }, 1000);
+                        this.clock_interval[actual_room_id][0] = setInterval(() => {
+
+
+                            if(time[0]<=0 && time[1]<=0){
+
+                                clearInterval(this.clock_interval[actual_room_id][0]);
+                                
+                                this.io.emit('win', {
+                                    win: 'BLACK WINS',
+                                    room: this.roomInfo[actual_room_id].room
+                                })
+        
+                            }else {
+
+                                time[1]--;
+                                if(time[1]<0){
+                                    time[1]=59;
+                                    time[0]--
+                                }
+                            
+                            }
+                            
+                            
+                      
+                            let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
+                      
+                            this.io.emit('update-white-time', {
+                                  white: clock,
+                                  room
+                              })
+    
+                              this.roomInfo[actual_room_id].white_time=time;
+                      
+                        }, 1000);
+
+                    
 
                 }else if( player == 1) {
 
@@ -217,24 +237,39 @@ class Sockets {
 
                     let time = this.roomInfo[actual_room_id].black_time;
 
+
                     this.clock_interval[actual_room_id][1] = setInterval(() => {
 
-                        time[1]--;
-                        if(time[1]<0){
-                          time[1]=59;
-                          time[0]--
-                        }
-                  
-                        let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
-                  
-                        this.io.emit('update-black-time', {
-                              black: clock,
-                              room
-                          })
+                        if(time[0]<=0 && time[1]<=0){
 
-                          this.roomInfo[actual_room_id].black_time=time;
-                  
-                      }, 1000);
+                            clearInterval(this.clock_interval[actual_room_id][1]);
+                            
+                            this.io.emit('win', {
+                                win: 'WHITE WINS',
+                                room: this.roomInfo[actual_room_id].room
+                            })
+    
+                        }else {
+                            
+                            time[1]--;
+                            if(time[1]<0){
+                                time[1]=59;
+                                time[0]--
+                            }
+                        
+                        }
+                    
+                        let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
+                    
+                        this.io.emit('update-black-time', {
+                                black: clock,
+                                room
+                            })
+
+                        this.roomInfo[actual_room_id].black_time=time;
+                      
+                    }, 1000);
+ 
 
                 }
             })

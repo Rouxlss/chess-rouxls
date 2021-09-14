@@ -296,3 +296,35 @@ body {
 .game-room h2 {
     color: white;
 }
+
+.win-alert {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.384);
+    position: absolute;
+    opacity: 0;
+    transition: .4s;
+}
+
+.win-alert-message {
+    position: absolute;
+    width: 80%;
+    height: 100px;
+    background: rgb(0, 0, 0);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: white;
+    text-align: center;
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.op1 {
+    opacity: 1;
+}

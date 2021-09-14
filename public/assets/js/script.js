@@ -152,8 +152,8 @@ const pieces_engine = () => {
 	  game.forEach((row) => {
 		for (let i = 0; i < row.length; i++) {
 		  row[i].lastElementChild.id == piece.id
-			? console.log("Pieza seleccionada: ", piece)
-			: null;
+			// ? console.log("Pieza seleccionada: ", piece)
+			// : null;
 		}
 	  });
 
@@ -422,6 +422,17 @@ socket.on("welcome", ({roomCount}) => {
 
 socket.on('connectToRoom', (data)=> {
 //   console.log(data);
+})
+
+socket.on('win', (data)=> {
+	if(data.room==room){
+		let win_alert = document.querySelector('.win-alert');
+		win_alert.classList.remove('d-none');
+		win_alert.querySelector('.win-alert-message').innerHTML = data.win
+		setTimeout(() => {
+			win_alert.classList.add('op1');
+		}, 100);
+	}
 })
 
 socket.on('full', ({msg, full}) => {
