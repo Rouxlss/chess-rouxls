@@ -15,6 +15,7 @@ class Sockets {
             //     room: room
             //     roomid: roomid
             //     time:time
+            //     fen:fen
             // }
         ];
 
@@ -49,11 +50,13 @@ class Sockets {
                         player2_id: '',
                         player2_name: '',
                         white_time: [],
-                        black_time: []
+                        black_time: [],
+                        fen: 'start'
                     });
 
                     socket.emit('first-player', {
-                        first_player: true
+                        first_player: true,
+                        fen: 'start'
                     })
 
                     this.roomCount = this.roomInfo.length;
@@ -72,15 +75,16 @@ class Sockets {
                                 
                                 room_info.player2_id = socket.id;
                                 room_info.player2_name = player
-                                room_info.white_time =  [0,10]
-                                room_info.black_time =  [0,10]
+                                room_info.white_time =  [5,0]
+                                room_info.black_time =  [5,0]
 
-                                this.clock_interval.push(['', '']);
+                                this.clock_interval.push(['', '', room]);
 
                                 this.io.emit('match', room_info);
 
                                 socket.emit('second-player', {
-                                    second_player: true
+                                    second_player: true,
+                                    fen: 'start'
                                 })
 
                             }
@@ -94,11 +98,11 @@ class Sockets {
                             full: true
                         })
 
-                        console.log('SALA LLENA');
+                        // console.log('SALA LLENA');
 
                     }else {
 
-                        console.log('NUEVA SALA');
+                        // console.log('NUEVA SALA');
 
                         socket.join(room);
                         this.io.to(room).emit('connectToRoom', {
@@ -126,72 +130,29 @@ class Sockets {
                     
                 }
 
-                console.log('ROOMS: ');
-                console.log(this.roomInfo);
+                // console.log('ROOMS: ');
+                // console.log(this.roomInfo);
             
             })
 
-        
-            // Escuchar evento: mensaje-to-server
-            socket.on('move-piece', ( {data, room} ) => {
-                // console.log( data, room );
-                this.io.emit('move-piece', {
-                    data,
-                    localroom: room
-                });
-            });
-
-            socket.on('change-turn', ( {player_turn, room} ) => {
-                console.log( 'turno: ' + player_turn );
-                this.io.emit('change-turn', {
-                    player_turn, 
-                    localroom: room 
-                });
-            });
-
-            socket.on('update-time', (data)=>{
-                // console.log(data);
-                // this.io.emit('update-time', data)
+            socket.on('move', (msg) => {
+                // console.log(move, board, room);
+                socket.broadcast.emit('move', msg);
             })
 
             socket.emit('welcome', {
                 roomCount: this.roomCount
             })
 
-            socket.on('disconnecting', () => {
-
-                this.roomInfo.forEach((room_info) => {
-                    
-                    if(room_info.host_id == socket.id) {
-                        
-                        console.log('El host abandonó la partida');
-                        this.roomInfo = this.roomInfo.filter(room => room.host_id != socket.id)
-
-                    }
-
-                    if(room_info.player2_id == socket.id) {
-                        
-                        console.log('El jugador 2 abandonó la partida');
-                        this.roomInfo = this.roomInfo.filter(room => room.host_id != socket.id)
-
-                    }
-
-                    this.roomCount = this.roomInfo.length;
-
-                });
-
-            });
-
             socket.on('time-discount', ({player, actual_room_id, room}) => {
 
-                console.log(actual_room_id);
+                // console.log(actual_room_id);
                 
                 if(player==0){
 
                     clearInterval(this.clock_interval[actual_room_id][0]);
 
                     let time = this.roomInfo[actual_room_id].white_time;
-
 
 
                         this.clock_interval[actual_room_id][0] = setInterval(() => {
@@ -208,10 +169,10 @@ class Sockets {
         
                             }else {
 
-                                time[1]--;
+                                --time[1];
                                 if(time[1]<0){
                                     time[1]=59;
-                                    time[0]--
+                                    --time[0]
                                 }
                             
                             }
@@ -236,7 +197,6 @@ class Sockets {
                     clearInterval(this.clock_interval[actual_room_id][1]);
 
                     let time = this.roomInfo[actual_room_id].black_time;
-
 
                     this.clock_interval[actual_room_id][1] = setInterval(() => {
 
@@ -272,6 +232,9 @@ class Sockets {
  
 
                 }
+
+                console.log(this.clock_interval);
+
             })
 
             socket.on('time-stop', ({player, actual_room_id, room}) => {
@@ -300,6 +263,60 @@ class Sockets {
                 }
 
             })
+
+            socket.on('checkmate', ({status, actual_room_id})=>{
+                this.io.emit('win', {
+                    status,
+                    room: this.roomInfo[actual_room_id].room
+                })
+            })
+
+            socket.on('drawn', ({status, actual_room_id})=>{
+                this.io.emit('win', {
+                    status,
+                    room: this.roomInfo[actual_room_id].room
+                })
+            })
+
+            socket.on('disconnecting', () => {
+
+                this.roomInfo.forEach((room_info) => {
+                    
+                    if(room_info.host_id == socket.id) {
+                        
+                        this.io.emit('disconnect-client', {
+                            room: room_info.room, 
+                            status: 'El host abandonó la partida'
+                        });
+
+                        clearInterval(this.clock_interval[room_info.roomid][1]);
+                        clearInterval(this.clock_interval[room_info.roomid][0]);
+                        this.clock_interval = this.clock_interval.filter(clock => clock[2] != room_info.room)
+                        this.roomInfo = this.roomInfo.filter(room => room.host_id != socket.id)
+
+                    }
+
+                    if(room_info.player2_id == socket.id) {
+                        
+                        this.io.emit('disconnect-client', {
+                            room: room_info.room, 
+                            status: 'El jugador abandonó la partida'
+                        });
+
+                        clearInterval(this.clock_interval[room_info.roomid][1]);
+                        clearInterval(this.clock_interval[room_info.roomid][0]);
+                        this.clock_interval = this.clock_interval.filter(clock => clock[2] != room_info.room)
+                        this.roomInfo = this.roomInfo.filter(room => room.player2_id != socket.id)
+
+                    }
+
+                    console.log(this.clock_interval);
+                    console.log(this.roomInfo);
+                    this.roomCount = this.roomInfo.length;
+
+                });
+
+            });
 
             console.log('cliente conectado');
             

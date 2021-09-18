@@ -187,7 +187,7 @@ body {
     bottom: 0px;
 }
 
-#chessboard {
+#myBoard {
     position: absolute;
     width: 450px;
     height: 450px;

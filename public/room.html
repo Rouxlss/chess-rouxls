@@ -13,12 +13,17 @@
 
 
     <div class="container row mt-5 mx-auto d-flex justify-content-center">
-        <hr>
-        <div class="col-3 mx-auto">
+        
+
+        <div class="col-3 user-room mx-auto">
             <h3 class="text-center">Username:</h3>
-            <input type="text" id="nameUser" placeholder="Username" class="text-center form-control">
+            <div class="row">
+                <div class="col-11"><input type="text" id="nameUser" placeholder="Username" class="text-center form-control"></div>
+                <div class="col-1"><button class="btn btn-primary next">></button></div>
+            </div>
         </div>
-        <div class="col-6 p-4  text-center">
+
+        <div class="col-6 p-4 login-room text-center d-none">
 
             <h2>Create Room</h2>
             <button id="CreateRoom" class="btn btn-primary">Create Room</button>
@@ -31,6 +36,9 @@
             <form action="" id="RoomForm">
                 <br>
                 <input type="text" id="GameURL"  placeholder="Enter Room" class="form-control">
+                <br>
+                <button type="submit" class="btn btn-primary">Enter Room</button>
+
             </form>
             
             

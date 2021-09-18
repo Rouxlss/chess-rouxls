@@ -2,6 +2,16 @@
 
 
 let RoomForm = document.querySelector('#RoomForm');
+let next = document.querySelector('.next');
+let login_room = document.querySelector('.login-room');
+let user_room = document.querySelector('.user-room');
+
+next.addEventListener('click', ()=> {
+    if(nameUser!='') {
+        user_room.classList.add('d-none');
+        login_room.classList.remove('d-none');
+    }
+})
 
 RoomForm.addEventListener('submit', (e)=> {
 
