@@ -1,3 +1,22 @@
+let RoomId = document.querySelector('#RoomId');
+let gameURL = window.location.href.split('/')
+let room = gameURL[3];
+
+if(room.length == 0){
+    location.href = `https://chess-server-rouxls.herokuapp.com/room`
+}
+
+let username = room.split('=');
+username = username[1];
+
+console.log(username);
+
+room = room.split('?')
+room = room[0];
+
+RoomId.value = room;
+
+
 // function makeRandomMove () {
 //   var possibleMoves = game.moves({
 //     verbose: true
@@ -5,7 +24,7 @@
 
 //   // game over
 //   if (possibleMoves.length === 0) return
-
+// 
 //   var randomIdx = Math.floor(Math.random() * possibleMoves.length)
 //   var move = possibleMoves[randomIdx]
 //   game.move(move.san)
@@ -233,19 +252,6 @@ function updateStatus() {
 
 }
 
-let RoomId = document.querySelector('#RoomId');
-let gameURL = window.location.href.split('/')
-let room = gameURL[3];
-
-let username = room.split('=');
-username = username[1];
-
-console.log(username);
-
-room = room.split('?')
-room = room[0];
-
-RoomId.value = room;
 
 socket.on("welcome", ({ roomCount }) => {
 
