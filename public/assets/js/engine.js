@@ -3,7 +3,8 @@ let gameURL = window.location.href.split('/')
 let room = gameURL[3];
 
 if(room.length == 0){
-    location.href = `https://chess-server-rouxls.herokuapp.com/room`
+    location.href = `http://localhost:4000/room`
+    // location.href = `https://chess-server-rouxls.herokuapp.com/room`
 }
 
 let username = room.split('=');

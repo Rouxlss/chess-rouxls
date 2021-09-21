@@ -54,6 +54,8 @@ class Sockets {
                         fen: 'start'
                     });
 
+                    this.clock_interval.push(['', '', room]);
+
                     socket.emit('first-player', {
                         first_player: true,
                         fen: 'start'
@@ -77,8 +79,6 @@ class Sockets {
                                 room_info.player2_name = player
                                 room_info.white_time =  [5,0]
                                 room_info.black_time =  [5,0]
-
-                                this.clock_interval.push(['', '', room]);
 
                                 this.io.emit('match', room_info);
 
