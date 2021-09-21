@@ -120,6 +120,8 @@ class Sockets {
                             player2_name: ''
                         });
 
+                        this.clock_interval.push(['', '', room]);
+
                         socket.emit('first-player', {
                             first_player: true
                         })
@@ -177,7 +179,6 @@ class Sockets {
                             
                             }
                             
-                            
                       
                             let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
                       
@@ -233,7 +234,7 @@ class Sockets {
 
                 }
 
-                console.log(this.clock_interval);
+                // console.log(this.clock_interval);
 
             })
 
