@@ -20,8 +20,8 @@ RoomForm.addEventListener('submit', (e)=> {
     if(nameUser!='') {
         let GameURL = document.querySelector('#GameURL').value;
         e.preventDefault();
-        // location.href = `https://chess-server-rouxls.herokuapp.com/${GameURL}?name=${nameUser}`
-        location.href = `http://localhost:4000/${GameURL}?name=${nameUser}`
+        location.href = `https://chess-server-rouxls.herokuapp.com/${GameURL}?name=${nameUser}`
+        // location.href = `http://localhost:4000/${GameURL}?name=${nameUser}`
     }
 
 })
