@@ -3,8 +3,7 @@ let gameURL = window.location.href.split("/");
 let room = gameURL[3];
 
 if (room.length == 0) {
-    // location.href = `http://localhost:4000/room`
-    location.href = `https://chess-server-rouxls.herokuapp.com/room`;
+    location.href = `${HOST}room`;
 }
 
 let username = room.split("=");
@@ -363,11 +362,15 @@ socket.on("full", ({ msg, full }) => {
 
 socket.on("win", (data) => {
     if (data.room == room) {
+
+        let play_again = document.querySelector(".play_again");
+        play_again.href = window.location.href;
+
         console.log(data.status);
 
         let win_alert = document.querySelector(".win-alert");
         win_alert.classList.remove("d-none");
-        win_alert.querySelector(".win-alert-message").innerHTML = data.status;
+        win_alert.querySelector(".mgs-text").innerHTML = data.status;
 
         setTimeout(() => {
             win_alert.classList.add("op1");
@@ -381,7 +384,7 @@ socket.on("disconnect-client", (data) => {
 
         let win_alert = document.querySelector(".win-alert");
         win_alert.classList.remove("d-none");
-        win_alert.querySelector(".win-alert-message").innerHTML = data.status;
+        win_alert.querySelector(".mgs-text").innerHTML = data.status;
 
         setTimeout(() => {
             win_alert.classList.add("op1");

@@ -131,9 +131,6 @@ class Sockets {
                     }
                     
                 }
-
-                // console.log('ROOMS: ');
-                // console.log(this.roomInfo);
             
             })
 
@@ -165,7 +162,7 @@ class Sockets {
                                 clearInterval(this.clock_interval[actual_room_id][0]);
                                 
                                 this.io.emit('win', {
-                                    win: 'BLACK WINS',
+                                    status: 'BLACK WINS',
                                     room: this.roomInfo[actual_room_id].room
                                 })
         
@@ -179,7 +176,6 @@ class Sockets {
                             
                             }
                             
-                      
                             let clock = `${time[0]}:${('00' + time[1]).slice(-2)}`
                       
                             this.io.emit('update-white-time', {
@@ -190,8 +186,6 @@ class Sockets {
                               this.roomInfo[actual_room_id].white_time=time;
                       
                         }, 1000);
-
-                    
 
                 }else if( player == 1) {
 
@@ -206,7 +200,7 @@ class Sockets {
                             clearInterval(this.clock_interval[actual_room_id][1]);
                             
                             this.io.emit('win', {
-                                win: 'WHITE WINS',
+                                status: 'WHITE WINS',
                                 room: this.roomInfo[actual_room_id].room
                             })
     
@@ -233,8 +227,6 @@ class Sockets {
  
 
                 }
-
-                // console.log(this.clock_interval);
 
             })
 
@@ -325,6 +317,5 @@ class Sockets {
     }
 
 }
-
 
 module.exports = Sockets;
