@@ -23,18 +23,18 @@ class Server {
 
     middlewares() {
         // Desplegar el directorio público
-        this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
+        this.app.use( express.static( path.resolve( __dirname, './public' ) ) );
 
         this.app.get('/room', function (req, res) {
-            res.sendFile(path.join(__dirname, '/../public/room.html'));
+            res.sendFile(path.join(__dirname, './public/room.html'));
         });
 
         this.app.get('/AI', function (req, res) {
-            res.sendFile(path.join(__dirname, '/../public/AI-game.html'));
+            res.sendFile(path.join(__dirname, './public/AI-game.html'));
         });
 
         this.app.get('/:id', function (req, res) {
-            res.sendFile(path.join(__dirname, '/../public/index.html'));
+            res.sendFile(path.join(__dirname, './public/index.html'));
         });
         
         // CORS
