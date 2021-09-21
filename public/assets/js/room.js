@@ -20,7 +20,7 @@ RoomForm.addEventListener('submit', (e)=> {
     if(nameUser!='') {
         let GameURL = document.querySelector('#GameURL').value;
         e.preventDefault();
-        location.href = `${HOST}${GameURL}?name=${nameUser}`
+        location.href = `${HOST}game/${GameURL}?name=${nameUser}`
     }
 
 })
@@ -36,7 +36,7 @@ CreateRoom.addEventListener('click', ()=> {
         let id = '_' + Math.random().toString(36).substr(2, 20);
         let RoomID = `game${id}chess`;
     
-        location.href = `${HOST}${RoomID}?name=${nameUser}`
+        location.href = `${HOST}game/${RoomID}?name=${nameUser}`
     }
 
 })
@@ -46,7 +46,7 @@ IAGame[0].addEventListener('click', ()=> {
     let nameUser = document.querySelector('#nameUser').value
 
     if(nameUser!='') {
-        location.href = `${HOST}AI?p=white`
+        location.href = `${HOST}game/AI?p=white`
     }
 
 })
@@ -57,7 +57,7 @@ IAGame[1].addEventListener('click', ()=> {
 
     if(nameUser!='') {
         // location.href = `https://chess-server-rouxls.herokuapp.com/${RoomID}?name=${nameUser}`
-        location.href = `${HOST}AI?p=black`
+        location.href = `${HOST}game/AI?p=black`
     }
 
 })

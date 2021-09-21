@@ -22,19 +22,31 @@ class Server {
     }
 
     middlewares() {
+
         // Desplegar el directorio público
         this.app.use( express.static( path.resolve( __dirname, './public' ) ) );
 
+        // view engine
+        this.app.set('view engine', 'ejs');
+        // this.app.set('views', __dirname + '/public/views');
+
         this.app.get('/room', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/room.html'));
+            res.render('room');
         });
 
         this.app.get('/AI', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/AI-game.html'));
+            res.render('AI-game');
         });
 
-        this.app.get('/:id', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/index.html'));
+        this.app.get('/game/:id', function (req, res) {
+            res.render('game');
+        });
+
+        // MAIN PAGES
+
+        this.app.get('/', function (req, res) {
+            res.render('main');
+            // res.sendFile(path.join(__dirname, './public/index.html'));
         });
         
         // CORS
