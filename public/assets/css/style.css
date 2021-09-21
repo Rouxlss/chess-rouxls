@@ -290,10 +290,21 @@ body {
     z-index: 10000000;
     position: absolute;
     height: 100vh;
-    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-room-id {
+    width: 80%;
+}
+
+.game-room-id-row {
+    display: flex;
 }
 
 .game-room h2 {
+    font-size: 20px;
     color: white;
 }
 
