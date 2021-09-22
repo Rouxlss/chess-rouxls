@@ -67,18 +67,6 @@ class Server {
         this.app.get('/gameAI', function (req, res) {
             res.render('AI-game')
         });
-
-        // this.app.get('/room', function (req, res) {
-        //     // res.sendFile(path.join(__dirname, './public/room.html'));
-        // });
-
-        // this.app.get('/AI', function (req, res) {
-        //     // res.sendFile(path.join(__dirname, './public/AI-game.html'));
-        // });
-
-        // this.app.get('/:id', function (req, res) {
-        //     // res.sendFile(path.join(__dirname, './public/index.html'));
-        // });
         
         // CORS
         this.app.use( cors() );
