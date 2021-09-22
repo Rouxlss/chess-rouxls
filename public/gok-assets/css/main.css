@@ -1,0 +1,1319 @@
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    background: black;
+}
+
+/* scroll bar */
+
+body::-webkit-scrollbar {
+    width: 1em;
+  }
+   
+  body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+
+/* controls */
+
+.d-none {
+    display: none;
+}
+
+/* end controls */
+
+.home {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 100;
+}
+
+.home__container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.home__bg {
+    position: absolute;
+    background: rgba(0, 0, 0, 0);
+    left: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+}
+
+.home__btn {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 4%;
+    top: 3%;
+    transition: .4s;
+    transform: scale(1.4);
+    cursor: pointer;
+    z-index: 100000;
+}
+
+.home__menu {
+    width: 450px;
+    height: 700px;
+    position: absolute;
+    left: -40px;
+    top: -40px;
+    transition: .4s;
+    cursor: pointer;
+    z-index: 10000000;
+}
+
+.menu__list {
+    font-family: 'Teko', sans-serif;
+    font-size: 25px;
+    position: absolute;
+    width: 50%;
+    height: 40%;
+    top: 150px;
+    left: 80px;
+    right: 0;
+    margin: auto;
+    color: rgb(255, 231, 96);
+    padding: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu__list a {
+    color: rgb(255, 231, 96);
+    text-decoration: none;
+}
+
+.menu__list li {
+    position: relative;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px rgba(121, 108, 34, 0.651);
+}
+
+.menu__list li::after {
+    transition: .2s;
+    content: "";
+    display: block;
+    border-bottom: 1px solid rgb(255, 231, 96);
+    position: absolute;
+    bottom: -5px;
+    width: 0%;
+}
+
+.menu__list li:hover::after {
+    width: 50%;
+}
+
+.home__menu img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.home__btn:hover {
+    transform: scale(1);
+}
+
+.home__btn:hover img {
+    filter: hue-rotate(130deg);
+}
+
+.home__btn img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.home__container .home__logo {
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    width: 428px;
+    height: 159px;
+}
+
+.home__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home__join {
+    position: absolute;
+    width: 337px;
+    height: 255px;
+    top: 200px;
+    left: 230px;
+    transition: .4s;
+}
+
+.home__join:hover {
+    transform: scale(1.3);
+}
+
+.home__join img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.home__login {
+    position: absolute;
+    width: 337px;
+    height: 255px;
+    top: 400px;
+    left: 230px;
+    transition: .4s;
+}
+
+.home__login:hover {
+    transform: scale(1.3);
+}
+
+.home__login img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.form__bg {
+    background: rgba(0, 0, 0, 0.603);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 7000;
+}
+
+.form__login {
+    background: rgba(0, 0, 0, 0.603);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 7000;
+}
+
+.home__form {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-family: 'Teko', sans-serif;
+    /* background: rgba(0, 0, 0, 0.452); */
+}
+
+.home__form .form__container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: contain;
+    position: absolute;
+}
+
+.form__close {
+    position: absolute;
+    right: 80px;
+    top: 45px;
+    z-index: 5000;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.form__close:hover {
+    transform: scale(1.2);
+}
+
+.home__form .form__button {
+    position: absolute;
+    width: 35%;
+    z-index: 1000;
+    bottom: 3%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: cover;
+    cursor: pointer;
+    transition: .4s;
+    z-index: 4000;
+}
+
+.home__form .form__button_Log {
+    position: absolute;
+    width: 35%;
+    z-index: 1000;
+    bottom: 3%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: cover;
+    cursor: pointer;
+    transition: .4s;
+    z-index: 4000;
+}
+
+.input_text {
+    border: none;
+    background: #BBB5A5;
+    color: #777267;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Teko', sans-serif;
+}
+
+.input_text:focus {
+    outline: none;
+}
+
+.home__form .form__group {
+    position: absolute;
+    z-index: 3000;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    height: 60%;
+    margin: auto;
+    padding: 20px;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+}
+
+.form__options {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.form__control {
+    color: #BBB5A5;
+    font-size: 22px;
+}
+
+.form__radios {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.form__radios input {
+    margin-right: 10px;
+}
+
+.home__form .form__button:hover {
+    transform: scale(1.2);
+}
+
+.home__form .form__button_Log:hover {
+    transform: scale(1.2);
+}
+
+.home__video {
+    position: absolute;
+    width: 700px;
+    height: 400px;
+    bottom:0px;
+    right: 0px;
+    transition: .4s;
+    z-index: 6000;
+}
+
+.home__video > .video__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home__video > .video__video{
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    object-fit: cover;
+}
+
+.video__play {
+    width: 100%;
+    height: 100%;
+    background: black;
+}
+
+.video__close {
+    position: absolute;
+    right: 60px;
+    top: 30px;
+    cursor: pointer;
+    z-index: 6000;
+    transition: .4s;
+}
+
+.home__video .video__close:hover {
+    transform: scale(1.2);
+}
+
+/* second section */
+
+.modes {
+    width: 100vw;
+    height: 260vh;
+    overflow: hidden;
+    /* background: rgb(0, 0, 0); */
+    background: rgba(2, 25, 87, 0.479);
+    position: relative;
+}
+
+.modes__bg {
+    position: absolute;
+    /* background: rgb(0, 0, 0); */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modes__history {
+    width: 100%;
+    position: relative;
+    margin: auto;
+    top: 50px;
+}
+
+.modes__history .history__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modes__history .history__title {
+    position: absolute;
+    width: 50%;
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.modes__history .modes-toplay  {
+    position: absolute;
+    /* background: black; */
+    width: 80%;
+    height: 40%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.modes-toplay .mode {
+    width: 30%;
+    position: relative;
+}
+
+.modes-toplay .mode__img {
+    width: 100%;
+    object-fit: contain;
+    transition: .4s;
+}
+
+.history__text {
+    position: absolute;
+    width: 30%;
+    bottom: 18%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.unlocked {
+    object-fit: contain;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.unlocked:hover {
+    transform: scale(1.2);
+}
+
+.modes-toplay .locked {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 40%;
+}
+
+.no-selectable {
+    animation: noselect .5s;
+}
+
+@keyframes noselect {
+    20% {
+        transform: translateX(5px);
+    }
+    40% {
+        transform: translateX(-5px);
+    }
+    60% {
+        transform: translateX(5px);
+    }
+    80% {
+        transform: translateX(-5px);
+    }
+}
+
+.modes__other {
+    position: relative;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.other__space {
+    width: 45%;
+    position: relative;
+}
+
+.other__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.other__icon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 60%;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.other__icon:hover {
+    transform: scale(1.5);
+}
+
+.other__text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15%;
+    margin: auto;
+    width: 50%;
+}
+
+.online {
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+.queen {
+    position: absolute;
+    right: -200px;
+    width: 50%;
+}
+
+.battle-text {
+    position: absolute;
+    left: 100px;
+    top: 150px;
+    width: 40%;
+    cursor: pointer;
+    transition: .4s;
+    animation: battle-animation ease infinite 4s;
+}
+
+@keyframes battle-animation  {
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* LOBBY */
+.lobby {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.lobby__container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* END MAIN */
+
+/* LOBBY */
+
+.lobby__header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 30;
+}
+
+.lobby__header .header__bg {
+    width: 100%;
+    top: -60px;
+    position: absolute;
+}
+
+.lobby__header > .home__btn {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+}
+
+.lobby__header > .home__logo {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    width: 158px;
+}
+
+.lobby__header > .home__logo img {
+    object-fit: contain;
+}
+
+.lobby__text {
+    position: absolute; 
+    width: 35%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: auto;
+}
+
+.lobby__text img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lobby__main {
+    width: 100%;
+    height: 100vh;
+}
+
+.lobby__main_bg {
+    width: 120%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.lobby__main_mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 200;
+    opacity: 0.7;
+}
+
+.lobby__main .lobby__main_ground {
+    position: absolute;
+    width: 50%;
+    object-fit: contain;
+    z-index: 200;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: 4s;
+    animation: move-ground 1s;
+}
+
+@keyframes move-ground {
+    0% {
+        transform: translateY(150px);
+    }
+}
+
+.col-wapons {
+    position: absolute;
+    width: 200px;
+    height: 50vh;
+    bottom: 40px;
+    margin: auto;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col-left {
+    left: 0%;
+    animation: move-left 1s;
+}
+
+@keyframes move-left {
+    0% {
+        transform: translateX(-300px);
+    }
+}
+@keyframes move-right{
+    0% {
+        transform: translateX(300px);
+    }
+}
+
+.col-right {
+    right: 0%;
+    animation: move-right 1s;
+}
+
+.weapon {
+    cursor: pointer;
+    width: 80%;
+    height: 30%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.weapon .nivel_herreria {
+    position: absolute;
+    width: 130%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    transition: .4s;
+}
+
+.col-left .weapon .nivel_herreria {
+    left: 100px;
+}
+
+.col-right .weapon .nivel_herreria {
+    right: 100px;
+}
+
+.weapon .rune {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 100;
+    transition: .4s;
+}
+
+.weapon:hover .rune{
+    transform: rotate(50deg);
+}
+
+
+.weapon .weapon_img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    position: relative;
+    z-index: 200;
+    margin: auto;
+    transition: .4s;
+}
+
+.weapon:hover .weapon_img{
+    transform: scale(1.2)
+}
+
+.lobby__main_bg_character {
+    position: absolute;
+    width: 60%;
+    left: 0;
+    right: 300px;
+    margin: auto;
+    bottom: -400px;
+    opacity: 0.3;
+    animation: move-bg-character 2s;
+}
+
+
+.lobby__play_btn {
+    cursor: pointer;
+    position: absolute;
+    bottom: -20px;
+    width: 20%;
+    z-index: 20000;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: .4s;
+    animation: move-ground 1.3s;
+}
+
+.lobby__play_btn:hover {
+    transform: scale(1.2);
+}
+
+
+.lobby__main_left-arrow {
+    position: absolute;
+    width: 70px;
+    z-index: 30000;
+    left: 35%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+}
+
+.lobby__main_right-arrow {
+    position: absolute;
+    width: 70px;
+    z-index: 30000;
+    right: 35%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+}
+
+.lobby__main_character {
+    position: absolute;
+    width: 25%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 60px;
+    z-index: 10000;
+    animation: show-character 1.5s;
+}
+
+
+@keyframes move-bg-character {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes show-character {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.lobby__stats-01 {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 30%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bg__stats-01 {
+    position: absolute;
+    width: 100%;
+}
+
+.stats01__pic {
+    position: absolute;
+    left: 21px;
+    top: -65px;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    z-index: 10000;
+    border-radius: 100%;
+}
+
+.stats01__pic .bg__stats-pic {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    object-fit: cover;
+}
+
+.stats-pp {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.stats01__medal {
+    position: absolute;
+    left: 50px;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    z-index: 10000;
+    border-radius: 100%;
+}
+
+.bg__stats-medal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    object-fit: cover;
+}
+
+.stats-medal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lobby__stats-02 {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 13%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.lobby__stats-02 .stat img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.lobby__stats-02 .stat {
+    width: 40%;
+    position: relative;
+    height: 90%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    font-family: 'Teko', sans-serif;
+}
+
+.lobby__stats-02 .stat img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lobby__stats-02 .stat p {
+    color: yellow;
+    font-size: 25px;
+    text-shadow: 2px 2px rgba(121, 108, 34, 0.651);
+}
+
+.bg__stats-02 {
+    opacity: 0.2;
+    position: absolute;
+    width: 100%;
+}
+
+/* MEDALS */
+
+.medals {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.medals__list {
+    width: 90%;
+    height: 100px;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.medals__space {
+    position: relative;
+    width: 15%;
+    height: 100%;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.medals__space:hover {
+    transform: scale(1.2);
+}
+
+.medals__space .space__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.medals__info {
+    position: absolute;
+    width: 80%;
+    height: 75vh;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10000;
+    font-family: 'Teko', sans-serif;
+
+}
+
+.info__body {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .4s;
+}
+
+.lobby__ground_mask {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    height: 50%;
+    transition: .4s;
+}
+
+.medals__info .form__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
+}
+
+.medals__info .info__title {
+    position: absolute;
+    z-index: 1000;
+    font-size: 2.5rem;
+    top: 20%;
+    left: 20%;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.651);
+}
+
+.info__img {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    object-fit: contain;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 5%;
+}
+
+.info__info {
+    position: absolute;
+    z-index: 1000;
+    color: #ffffff;
+    font-size: 1.5rem;
+    bottom: 30%;
+    left: 20%;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.651);
+    width: 40%;
+}
+
+/* colors */
+
+.aces {
+    color: #FF4C36;
+}
+
+.trebol {
+    color: #83FF63;
+}
+
+.corazon {
+    color: #FF4C36;
+}
+
+.diamante {
+    color: #CEB1E1;
+}
+
+.espada {
+    color: #FFFF3B;
+}
+
+.anima {
+    color: #67ECEB;
+}
+
+.world-color {
+    color: #FFFF3B;
+}
+
+.level-color {
+    color: #41bb3c;
+}
+/* WORLD */
+.world__header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 300;
+}
+
+
+.world__header .header__bg {
+    width: 100%;
+    top: -60px;
+    position: absolute;
+}
+
+.world__header > .home__btn {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+}
+
+.world__header > .home__logo {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    width: 158px;
+}
+
+.world__header > .home__logo img {
+    object-fit: contain;
+}
+
+.world__text {
+    position: absolute; 
+    width: 35%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: auto;
+}
+
+.world__text img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.worlds__main {
+    width: 100%;
+    height: 100%;
+}
+
+.worlds_main_mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 200;
+    opacity: 0.7;
+}
+
+.world__blocks {
+    position: absolute;
+    width: 300%;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 50vh;
+    z-index: 300;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    justify-content: center;
+    transition: .4s;
+}
+
+.block-step {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.world__block {
+    position: relative;
+    width: 25%;
+}
+
+.block__bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: contain;
+}
+
+.world__block .world__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    transition: .4s;
+}
+
+.world__block:hover .world__img{
+    transform: scale(1.2);
+}
+
+.world__block .world__name {
+    position: absolute;
+    top: 65%;
+    right: 40%;
+    width: 50%;
+    height: 25%;
+}
+
+.world__block .world__chain {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+}
+
+
+.worlds_left-arrow {
+    position: fixed;
+    z-index: 100;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    z-index: 100000;
+}
+
+.worlds_right-arrow {
+    position: fixed;
+    z-index: 100;
+    right: 50px;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    z-index: 100000;
+
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.game__logo {
+    position: absolute;
+    top: -20px;
+    width: 15%;
+    right: 0px;
+}
+
+.game__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.game-board {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.board__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: cover;
+    opacity: 0.2;
+}
+
+.board__playable {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.board__playable img {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: cover;
+}

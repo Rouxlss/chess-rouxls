@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+		integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU" crossorigin="anonymous">
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+		crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+		integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+		crossorigin="anonymous"></script>
+
+	<script src="/assets/js/cheesboard/chess.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css">
+
+	<link rel="stylesheet" href="/assets/css/style.css" />
+
+	<link rel="shortcut icon" href="/assets/img/pieces/white-queen.png" type="image/x-icon" />
+
+	<title>CHESS</title>
+</head>
+
+<body>
+
+	<style type="text/css">
+		.highlight-white {
+			box-shadow: inset 0 0 3px 3px yellow;
+		}
+
+		.highlight-black {
+			box-shadow: inset 0 0 3px 3px rgb(7, 197, 255);
+		}
+	</style>
+
+	<main>
+
+		<div id="myBoard" style="width: 500px"></div>
+
+        <div class="win-alert d-none">
+			<div class="win-alert-message">
+				<div class="mgs-text">
+                    El host abandonó la partida
+                </div>
+                <div class='msg_text-center'>
+                    <a class='btn btn-danger text-center' href='/room'>RETURN TO THE ROOMS</a>
+                    <br>
+                    <a class='btn btn-primary text-center play_again' href='/room'>PLAY AGAIN</a>
+                </div>
+			</div>
+			
+		</div>
+
+	</main>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
+		integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
+		crossorigin="anonymous"></script>
+
+    <script>
+        // const HOST = 'http://localhost:4000/';
+        const HOST = 'https://chess-server-rouxls.herokuapp.com/';
+    </script>
+	<script src="/assets/js/AI-game.js"></script>
+
+</body>
+
+</html>

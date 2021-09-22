@@ -1,0 +1,88 @@
+
+<%- include('static/header') -%>
+
+<div class="lobby">
+
+    <%- include('static/menu') -%>
+
+    <div class="lobby__header">
+        <img class="header__bg" src="<%= imgsrc %>/lobby/header.png" alt="">
+
+        <div class="home__logo">
+            <img src="<%= imgsrc %>/boton-game-of-logo.png" alt="">
+        </div>
+        <div class="lobby__text">
+            <img src="<%= imgsrc %>/lobby/header-perfil.png" alt="">
+        </div>
+    </div>
+    <div class="lobby__main">
+        <img src="<%= imgsrc %>/lobby/GOK_Chess_Ground_1.png" class="lobby__main_bg" alt="">
+        <img src="<%= imgsrc %>/lobby/f1.png" class="lobby__main_mask" alt="">
+        <img src="<%= imgsrc %>/lobby/ground.png" class="lobby__main_ground" alt="">
+        <img src="" class="lobby__main_bg_character" alt="">
+        <img src="<%= imgsrc %>/lobby/left-arrow.png" class="lobby__main_left-arrow" alt="">
+        <img src="" class="lobby__main_character" alt="">
+        <img src="<%= imgsrc %>/lobby/right-arrow.png" class="lobby__main_right-arrow" alt="">
+        <img src="<%= imgsrc %>/lobby/play-btn.png" class="lobby__play_btn" alt="">
+        <div class="col-wapons col-left">
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/blade.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/helmet.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/overalls.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+        </div>
+        <div class="col-wapons col-right">
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/shield.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/glove.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+            <div class="weapon">
+                <img src="<%= imgsrc %>/lobby/rune.png" class="rune" alt="">
+                <img src="<%= imgsrc %>/lobby/boots.png" class="weapon_img" alt="">
+                <img src="<%= imgsrc %>/lobby/nivel_herreria.png" class="nivel_herreria d-none" alt="">
+            </div>
+        </div>
+        <div class="lobby__stats-01">
+            <img src="<%= imgsrc %>/lobby/stats-01.png" class="bg__stats-01" alt="">
+            <div class="stats01__pic">
+                <img src="<%= imgsrc %>/lobby/stats-circle.png" class="bg__stats-pic" alt="">
+                <img src="<%= imgsrc %>/lobby/peon-blanco-pp.png" class="stats-pp" alt="">
+            </div>
+            <div class="stats01__medal">
+                <img src="<%= imgsrc %>/lobby/stats-circle.png" class="bg__stats-medal" alt="">
+                <img src="<%= imgsrc %>/medals/01.Medalla_Ases.png" class="stats-medal" alt="">
+            </div>
+        </div>
+        <div class="lobby__stats-02">
+            <img src="<%= imgsrc %>/lobby/stats-02.png" class="bg__stats-02" alt="">
+            <div class="gold stat">
+                <img src="<%= imgsrc %>/lobby/golden_bag.png" class="golden_bag" alt="">
+                <p>465</p>
+            </div>
+            <div class="potion stat">
+                <img src="<%= imgsrc %>/lobby/potion.png" class="potion" alt="">
+                <p>05</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/gok-assets/js/lobby.js"></script>
+
+<%- include('static/footer') -%>

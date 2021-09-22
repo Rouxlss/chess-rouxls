@@ -22,20 +22,63 @@ class Server {
     }
 
     middlewares() {
+
         // Desplegar el directorio público
         this.app.use( express.static( path.resolve( __dirname, './public' ) ) );
 
+        // Template engine
+        this.app.set('view engine', 'ejs');
+        this.app.set('views', __dirname + '/views')
+
+        // this.app.get('/', function (req, res) {
+        //     res.render('main', {
+        //         imgsrc: 'gok-assets/img/'
+        //     })
+        // });
+
+        // this.app.get('/medals', function (req, res) {
+        //     res.render('medals', {
+        //         imgsrc: 'gok-assets/img/'
+        //     })
+        // });
+
+        // this.app.get('/worlds', function (req, res) {
+        //     res.render('worlds', {
+        //         imgsrc: 'gok-assets/img/'
+        //     })
+        // });
+
+        // this.app.get('/lobby', function (req, res) {
+        //     res.render('lobby', {
+        //         imgsrc: 'gok-assets/img/'
+        //     })
+        // });
+
+        this.app.get('/game/:id', function (req, res) {
+            res.render('game', {
+                server: 'https://chess-server-rouxls.herokuapp.com/'
+            })
+        });
+
         this.app.get('/room', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/room.html'));
+            res.render('room')
         });
 
-        this.app.get('/AI', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/AI-game.html'));
+        this.app.get('/gameAI', function (req, res) {
+            res.render('AI-game')
         });
 
-        this.app.get('/:id', function (req, res) {
-            res.sendFile(path.join(__dirname, './public/index.html'));
-        });
+        // this.app.get('/room', function (req, res) {
+        //     // res.sendFile(path.join(__dirname, './public/room.html'));
+        // });
+
+        // this.app.get('/AI', function (req, res) {
+        //     // res.sendFile(path.join(__dirname, './public/AI-game.html'));
+        // });
+
+        // this.app.get('/:id', function (req, res) {
+        //     // res.sendFile(path.join(__dirname, './public/index.html'));
+        // });
         
         // CORS
         this.app.use( cors() );

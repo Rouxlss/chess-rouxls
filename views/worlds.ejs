@@ -1,0 +1,85 @@
+<%- include('static/header') -%>
+
+<div class="world">
+
+    <%- include('static/menu') -%>
+
+    <div class="world__header">
+        <img class="header__bg" src="<%= imgsrc %>/world/header.png" alt="">
+
+        <div class="home__logo">
+            <img src="<%= imgsrc %>/boton-game-of-logo.png" alt="">
+        </div>
+        <div class="world__text">
+            <img src="<%= imgsrc %>/world/header-mundos.png" alt="">
+        </div>
+    </div>
+
+    <div class="worlds__main">
+        <img src="<%= imgsrc %>/second-bg.png" alt="" class="modes__bg">
+        <img src="<%= imgsrc %>/world/f1.png" alt="" class="worlds_main_mask">
+        <img src="<%= imgsrc %>/lobby/left-arrow.png" class="worlds_left-arrow" alt="">
+
+        <div class="world__blocks">
+            <div class="block-step">
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world1.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/docco.png" alt="">
+                </div>
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world2.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/idgar.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world3.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/artemis.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+            </div>
+            <div class="block-step">
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world4.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/jaguar.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world5.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/udya.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world6.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/cnosos.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+            </div>
+            <div class="block-step">
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world7.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/fortaleza_negra.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+                <div class="world__block">
+                    <img class="block__bg" src="<%= imgsrc %>/world/block__bg.png">
+                    <img class="world__img" src="<%= imgsrc %>/world/world8.png" alt="">
+                    <img class="world__name" src="<%= imgsrc %>/world/runas.png" alt="">
+                    <img class="world__chain" src="<%= imgsrc %>/world/chain.png" alt="">
+                </div>
+            </div>
+        </div>
+        <img src="<%= imgsrc %>/lobby/right-arrow.png" class="worlds_right-arrow" alt="">
+    </div>
+</div>
+
+<script src="/gok-assets/js/menu.js"></script>
+<script src="/gok-assets/js/world.js"></script>
+
+<%- include('static/footer') -%>

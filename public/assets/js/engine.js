@@ -1,6 +1,6 @@
 let RoomId = document.querySelector("#RoomId");
 let gameURL = window.location.href.split("/");
-let room = gameURL[3];
+let room = gameURL[4];
 
 if (room.length == 0) {
     location.href = `${HOST}room`;
@@ -17,42 +17,17 @@ room = room[0];
 RoomId.value = room;
 
 const copy_chess_id = () => {
-    /* Get the text field */
-    /* Select the text field */
+
     RoomId.select();
-    RoomId.setSelectionRange(0, 99999); /* For mobile devices */
-
-    /* Copy the text inside the text field */
+    RoomId.setSelectionRange(0, 99999); 
     navigator.clipboard.writeText(RoomId.value);
-
-    /* Alert the copied text */
-    alert("Copied the text: " + RoomId.value);
+    alert("Copied the room: " + RoomId.value);
+    
 };
 
 const btn = document.querySelector(".copy-button");
 
 btn.addEventListener("click", copy_chess_id);
-
-// function makeRandomMove () {
-//   var possibleMoves = game.moves({
-//     verbose: true
-//   })
-
-//   // game over
-//   if (possibleMoves.length === 0) return
-//
-//   var randomIdx = Math.floor(Math.random() * possibleMoves.length)
-//   var move = possibleMoves[randomIdx]
-//   game.move(move.san)
-
-//   // highlight black's move
-//   removeHighlights('black')
-//   $board.find('.square-' + move.from).addClass('highlight-black')
-//   squareToHighlight = move.to
-
-//   // update the board to the new position
-//   board.position(game.fen())
-// }
 
 let actual_room_id = null;
 let global_fen = null;
@@ -168,8 +143,6 @@ function onDrop(source, target) {
 
     // make random move for black
     updateStatus();
-    // console.log(game.turn())
-    // window.setTimeout(makeRandomMove, 250)
 }
 
 function onMoveEnd() {
